@@ -1,0 +1,28 @@
+.page {
+  display: flex;
+  height: 100vh;
+}
+
+.counter {
+  display: flex;
+  margin: auto;
+
+  &__btn {
+    height: 45px;
+    width: 45px;
+    background-color: #fff;
+    border: 1.5px solid #000;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  &__value {
+    display: block;
+    margin: 0 15px;
+    font-size: 35px;
+    font-weight: 400;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #000;
+  }
+}
