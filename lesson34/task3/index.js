@@ -1,6 +1,3 @@
-//algo
-// 1. add event to submit button. in this event fetch data
-// 2. 
 const baseUrl = 'https://5ffacff987478d0017d9a8a0.mockapi.io/tasks/grom/form';
 
 const formElem = document.querySelector('.login-form');
