@@ -5,7 +5,7 @@ import { showSpinner, hideSpinner } from './spinner.js';
 
 const userAvatarEl = document.querySelector('.user__avatar');
 
-userAvatarEl.src = 'https://avatars2.githubusercontent.com/u10001';
+userAvatarEl.src = 'https://avatars3.githubusercontent.com/u10001';
 
 const nameBtnEl = document.querySelector('.name-form__btn');
 const nameInputEl = document.querySelector('.name-form__input');
