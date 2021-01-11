@@ -3,6 +3,7 @@
 // 2. 
 const baseUrl = 'https://5ffacff987478d0017d9a8a0.mockapi.io/tasks/grom/form';
 
+const formElem = document.querySelector('.login-form');
 const submitBtnEl = document.querySelector('.submit-button');
 const errorTextEl = document.querySelector('.error-text');
 
@@ -11,44 +12,25 @@ const emailInputEl = document.querySelector('#email');
 const passwordInputEl = document.querySelector('#password');
 
 const emailCheck = (e) => {
-    if(!e.target.value.includes('@')){
-        errorTextEl.textContent = 'email should contain "@" sign';
-    }else{
-        errorTextEl.textContent = '';
-    }
+    if(formElem.checkValidity()){
+        submitBtnEl.removeAttribute('disabled');
+   }
 }
 const nameCheck = (e) => {
-    if(!e.target.value){
-        errorTextEl.textContent = 'name field id required';
-    }else{
-        errorTextEl.textContent = '';
-    }
+    if(formElem.checkValidity()){
+        submitBtnEl.removeAttribute('disabled');
+   }
 }
 const passwordCheck = (e) => {
-    if(!e.target.value){
-        errorTextEl.textContent = 'password field id required';
-    }else{
-        errorTextEl.textContent = '';
-    }
+    if(formElem.checkValidity()){
+        submitBtnEl.removeAttribute('disabled');
+   }
 }
 
 emailInputEl.addEventListener('input', emailCheck);
 nameInputEl.addEventListener('input', nameCheck);
 passwordInputEl.addEventListener('input', passwordCheck);
 
-
-const formElem = document.querySelector('.login-form');
-
-if(errorTextEl.textContent = '')
-    {
-      submitBtnEl.removeAttribute("disabled");
-    }
-    else
-      submitBtnEl.setAttribute("disabled", "disabled");
-
-// if(formElem.reportValidity()){
-//     submitBtnEl.disabled = false;
-// }
 
 const onFormSubmit = event => {
   event.preventDefault();
