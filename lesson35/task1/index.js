@@ -1,54 +1,33 @@
-// const jsonStr = '{ "name": "Tom" }';
-// const userData = JSON.parse(jsonStr);
-// console.log(userData);
+import { fetchUserData, fetchReposes } from './gateway.js';
+import { renderUserData } from './user.js';
+import { renderReposes, cleanReposesList } from './reposes.js';
+import { showSpinner, hideSpinner } from './spinner.js';
 
-// const errorHandler = e => {
-//   console.log(e);
-// };
+const userAvatarEl = document.querySelector('.user__avatar');
 
-// window.addEventListener('error', errorHandler);
+userAvatarEl.src = 'https://avatars2.githubusercontent.com/u10001';
 
-// try {
-//   const jsonStr = '{ "name": "Tom"}';
-//   throw new RefferenceError();
-//   const userData = JSON.parse(jsonStr);
-//   console.log(userData);
-// } catch (err) {
-//   if (err instanceof SyntaxError) {
-//     console.error(err.name);
-//   } else {
-//     throw err;
-//   }
-// } finally {
-//   console.log('hi bitch');
-// }
+const nameBtnEl = document.querySelector('.name-form__btn');
+const nameInputEl = document.querySelector('.name-form__input');
 
-const onUnhandledError = err => {
-  console.error('error', err.message);
+const onSearchUser = () => {
+  showSpinner();
+  cleanReposesList();
+  const userName = nameInputEl.value;
+  fetchUserData(userName)
+    .then(data => {
+      renderUserData(data);
+      return data.repos_url;
+    })
+    .then(url => fetchReposes(url))
+    .then(reposesList => {
+      renderReposes(reposesList);
+      hideSpinner();
+    })
+    .catch(err => {
+      hideSpinner();
+      alert(err.message);
+    });
 };
 
-window.addEventListener('error', onUnhandledError);
-
-let userParsingResult;
-
-try {
-  const user = JSON.parse('{ "name": "Tom"}');
-  console.log('User data: ', user);
-  userParsingResult = 'success';
-} catch (e) {
-  userParsingResult = 'error';
-} finally {
-  console.log(`User parsing finished with ${userParsingResult}`);
-}
-
-let productParsingResult;
-
-try {
-  const product = JSON.parse('{ "productId": "1234f6"');
-  console.log('Product data: ', product);
-  productParsingResult = 'success';
-} catch (e) {
-  productParsingResult = 'error';
-} finally {
-  console.log(`Product parsing finished with ${productParsingResult}`);
-}
+nameBtnEl.addEventListener('click', onSearchUser);
