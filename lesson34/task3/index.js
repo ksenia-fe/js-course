@@ -38,17 +38,17 @@ const onFormSubmit = event => {
     (acc, [field, value]) => ({ ...acc, [field]: value }),
     {},
   );
-  alert(JSON.stringify(formData));
-  emailInputEl.value = '';
-  nameInputEl.value = '';
-  passwordInputEl.value = '';
-  return fetch(baseUrl, {
+  fetch(baseUrl, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify(formData),
 })
+    fetch(baseUrl).then(data => data.json()).then(data => alert(JSON.stringify(data.reverse()[0])));
+    emailInputEl.value = '';
+    nameInputEl.value = '';
+    passwordInputEl.value = '';
 };
 
 
