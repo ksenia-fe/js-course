@@ -1,14 +1,13 @@
 import { renderTasks } from './render.js';
 import { getItem, setItem } from './storage.js';
-import { changeTask, getTasksList } from './tasksGateway';
+import { changeTasks, getTasksList } from './tasksGateway.js';
 
-export const changeTask = event => {
-  const tasksList = getItem('tasksList');
-  const { text, createDate} = tasksList
-    .then(tasks => tasks.id === taskId);
-  const done = event.target.checked;
-  
+export const changgeTask = event => {
   const taskId = event.target.dataset.id;
+  const tasksList = getItem('tasksList');
+  const { text, createDate } = tasksList.find(tasks => tasks.id === taskId);
+  const done = event.target.checked;
+
   const updatedTask = {
     text,
     createDate,
@@ -16,7 +15,7 @@ export const changeTask = event => {
     finishDate: done ? new Date().toISOString() : null,
   };
 
-  changeTask(taskId, updatedTask)
+  changeTasks(taskId, updatedTask)
     .then(() => getTasksList())
     .then(newTasksList => {
       setItem('tasksList', newTasksList);
@@ -24,9 +23,8 @@ export const changeTask = event => {
     });
 };
 
-
-//1. prepare data
-//2. update data in db
-//3. read new data from server
-//4. save new data to front-end storage
-//5. update UI based on new data
+// 1. prepare data
+// 2. update data in db
+// 3. read new data from server
+// 4. save new data to front-end storage
+// 5. update UI based on new data

@@ -8,26 +8,25 @@ const nameInputEl = document.querySelector('#name');
 const emailInputEl = document.querySelector('#email');
 const passwordInputEl = document.querySelector('#password');
 
-const emailCheck = (e) => {
-    if(formElem.reportValidity()){
-        submitBtnEl.removeAttribute('disabled');
-   }
-}
-const nameCheck = (e) => {
-    if(formElem.reportValidity()){
-        submitBtnEl.removeAttribute('disabled');
-   }
-}
-const passwordCheck = (e) => {
-    if(formElem.reportValidity()){
-        submitBtnEl.removeAttribute('disabled');
-   }
-}
+const emailCheck = e => {
+  if (formElem.reportValidity()) {
+    submitBtnEl.removeAttribute('disabled');
+  }
+};
+const nameCheck = e => {
+  if (formElem.reportValidity()) {
+    submitBtnEl.removeAttribute('disabled');
+  }
+};
+const passwordCheck = e => {
+  if (formElem.reportValidity()) {
+    submitBtnEl.removeAttribute('disabled');
+  }
+};
 
 emailInputEl.addEventListener('input', emailCheck);
 nameInputEl.addEventListener('input', nameCheck);
 passwordInputEl.addEventListener('input', passwordCheck);
-
 
 const onFormSubmit = event => {
   event.preventDefault();
@@ -35,25 +34,23 @@ const onFormSubmit = event => {
     (acc, [field, value]) => ({ ...acc, [field]: value }),
     {},
   );
-    fetch(baseUrl, {
+  fetch(baseUrl, {
     method: 'POST',
     headers: {
-        'Content-Type': 'application/json;charset=utf-8',
+      'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify(formData),
-    })
+  })
     .then(data => data.json())
     .then(data => {
-        alert(JSON.stringify(data));
-        emailInputEl.value = '';
-        nameInputEl.value = '';
-        passwordInputEl.value = '';
+      alert(JSON.stringify(data));
+      emailInputEl.value = '';
+      nameInputEl.value = '';
+      passwordInputEl.value = '';
     })
-    .catch(() => {errorTextEl.textContent = 'Failed to create user'})
+    .catch(() => {
+      errorTextEl.textContent = 'Failed to create user';
+    });
 };
 
-
 formElem.addEventListener('submit', onFormSubmit);
-
-
-

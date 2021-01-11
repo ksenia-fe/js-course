@@ -1,8 +1,8 @@
 import { renderTasks } from './render.js';
-import { addTask } from './addTask.js';
 import { getTasksList } from './tasksGateway.js';
-import { changgeTask } from './changeTask.js';
 import { setItem } from './storage.js';
+import { onCreateTask } from './addTask.js';
+import { doneOrDelete } from './changeTask.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   getTasksList().then(tasksList => {
@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTasks();
   });
 
-  const createBtnElem = document.querySelector('.create-task-btn');
-  createBtnElem.addEventListener('click', addTask);
+  const createBtnEl = document.querySelector('.create-task-btn');
+  createBtnEl.addEventListener('click', onCreateTask);
 
-  const todoListElem = document.querySelector('.list');
-  todoListElem.addEventListener('click', changgeTask);
+  const listEl = document.querySelector('.list');
+  listEl.addEventListener('click', doneOrDelete);
 });
 
-const onStorageChange = event => {
-  if (event.key === 'tasksList') {
+const onStorageChange = e => {
+  if (e.key === 'tasksList') {
     renderTasks();
   }
 };
