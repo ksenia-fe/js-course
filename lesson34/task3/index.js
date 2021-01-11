@@ -12,17 +12,17 @@ const emailInputEl = document.querySelector('#email');
 const passwordInputEl = document.querySelector('#password');
 
 const emailCheck = (e) => {
-    if(formElem.checkValidity()){
+    if(formElem.reportValidity()){
         submitBtnEl.removeAttribute('disabled');
    }
 }
 const nameCheck = (e) => {
-    if(formElem.checkValidity()){
+    if(formElem.reportValidity()){
         submitBtnEl.removeAttribute('disabled');
    }
 }
 const passwordCheck = (e) => {
-    if(formElem.checkValidity()){
+    if(formElem.reportValidity()){
         submitBtnEl.removeAttribute('disabled');
    }
 }
@@ -44,13 +44,15 @@ const onFormSubmit = event => {
         'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify(formData),
-}).then(data => data.json())
-  .then(data => alert(JSON.stringify(data)))
-  .catch(() => {errorTextEl.textContent = 'Failed to create user'})
-
-  emailInputEl.value = '';
-  nameInputEl.value = '';
-  passwordInputEl.value = '';
+    })
+    .then(data => data.json())
+    .then(data => {
+        alert(JSON.stringify(data));
+        emailInputEl.value = '';
+        nameInputEl.value = '';
+        passwordInputEl.value = '';
+    })
+    .catch(() => {errorTextEl.textContent = 'Failed to create user'})
 };
 
 
