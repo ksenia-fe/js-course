@@ -19,7 +19,7 @@ const addImage = imgSrc => {
   return p;
 };
 
-//test call
+// test call
 const src =
   'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg';
 const resultPromise = addImage(src);

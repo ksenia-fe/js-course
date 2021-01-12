@@ -21,6 +21,6 @@ const requestUserData = userId => {
 
 const a = requestUserData('user-1').then(data => console.log(data));
 const b = requestUserData('user-1').then(data => console.log(data));
-console.log(a == b); //false === also false
+console.log(a === b); // false === also false
 requestUserData('broken').catch(data => console.log(data));
 requestUserData('user-134').finally(() => console.log('finally'));
