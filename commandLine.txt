@@ -1,0 +1,17 @@
+ls - shows what is inside
+
+mkdir - creates a folder
+rm -r - deletes folder
+touch - creates a file
+rm - deletes file
+
+cat - show what is inside
+
+vim - show what is inside + allows to change data
+inside the file with vim command:
+write 'i' to be able to change data
+after changing data press escape, then :wq (with saving changes)
+
+activity monitor(all the processes are there)
+ps aux | less - shows all the processes
+kill (optional)-9(kill immediatly) or -15(kill if it is possible) idOfProcess - kills the the process
